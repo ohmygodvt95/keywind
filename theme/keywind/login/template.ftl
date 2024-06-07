@@ -20,11 +20,16 @@
 >
   <#assign cardHeader>
     <@logo.kw>
-      ${kcSanitize(msg("loginTitleHtml", (realm.displayNameHtml!"")))?no_esc}
+      <div class="pb-10">
+        <img src="${url.resourcesPath}${properties.logo_image}" alt="logo" class="mx-auto w-full">
+      </div>
+      <span class="text-gray-500">${kcSanitize(msg("loginTitleHtml", (realm.displayNameHtml!"")))?no_esc}</span>
     </@logo.kw>
     <#if !(auth?has_content && auth.showUsername() && !auth.showResetCredentials())>
       <@heading.kw>
-        <#nested "header">
+        <div class="pt-6 text-gray-400 hidden">
+          <#nested "header">
+        </div>
       </@heading.kw>
     <#else>
       <#nested "show-username">

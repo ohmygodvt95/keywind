@@ -16,24 +16,25 @@
       <link href="${url.resourcesPath}/${favicon?split('==')[0]}" rel="${favicon?split('==')[1]}">
     </#list>
   </#if>
-  <#if properties.styles?has_content>
-    <#list properties.styles?split(" ") as style>
-      <link href="${url.resourcesPath}/${style}" rel="stylesheet">
-    </#list>
-  </#if>
-
-  <#if script?has_content>
-    <script defer src="${url.resourcesPath}/${script}" type="module"></script>
-  </#if>
-
-  <#if properties.scripts?has_content>
-    <#list properties.scripts?split(" ") as script>
-      <script defer src="${url.resourcesPath}/${script}" type="module"></script>
-    </#list>
-  </#if>
 
   <#if realm.displayName == 'Keycloak'>
     <link href="http://localhost:5173/src/index.css" rel="stylesheet">
     <script defer src="http://localhost:5173/src/index.ts" type="module"></script>
+  <#else>
+    <#if properties.styles?has_content>
+      <#list properties.styles?split(" ") as style>
+        <link href="${url.resourcesPath}/${style}" rel="stylesheet">
+      </#list>
+    </#if>
+
+    <#if script?has_content>
+      <script defer src="${url.resourcesPath}/${script}" type="module"></script>
+    </#if>
+
+    <#if properties.scripts?has_content>
+      <#list properties.scripts?split(" ") as script>
+        <script defer src="${url.resourcesPath}/${script}" type="module"></script>
+      </#list>
+    </#if>
   </#if>
 </#macro>
